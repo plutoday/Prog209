@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Color Picker</title>
+    <link rel="stylesheet"  href="e2style.css" type="text/css"/>
+
+</head>
+<body>
+
+<div id="colorPicker">
+    <h2>CSS Color Displayer</h2>
+    <p>Select a number from 0 to 255 for each colorvalue:</p>
+<div class="rgb">
+    <label for="red">Red:</label><br>
+    <input type="text" name="red" id="red" class="in">
+    </div>
+<div class="rgb">
+    <label for="green">Green:</label><br>
+    <input type="text" name="green" id="green" class="in">
+    </div>
+<div class="rgb">
+    <label for="blue">Blue:</label><br>
+    <input type="text" name="blue" id="blue" class="in">
+    </div>
+<ul>
+<li><input type="submit" id="show" value="Show me the color!"></li>
+<li></li><input type="submit" id="clear" value="Clear all"></ul>
+</ul>
+<div id="colorBar">
+
+</div>
+<p>HEX Color:</p>
+<div id="hex">
+    
+</div>
+</div>
+</body>
+<script>
+var showButton = document.querySelector("#show");
+showButton.addEventListener("click", showColorHandler, false);
+var clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", clear, false);
+
+function showColorHandler(e){
+    var r = document.getElementById("red").value - 0;
+    var g = document.getElementById("green").value - 0;
+    var b = document.getElementById("blue").value - 0;
+    var max = Math.max(r,g,b);
+    var min = Math.min(r,g,b);
+    if (validator(max,min)){
+        colorBar.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+        document.getElementById("hex").innerHTML = "#"+r.toString(16)+g.toString(16)+b.toString(16);
+    } else {
+        alert("Please input valid numbers whithin 0~255!");
+        clear();
+    }
+}
+
+function validator(max,min){
+    if (max==undefined || isNaN(max) || max>255 || min<0){
+        return false;        
+} else{
+        return true;
+}
+}
+
+function clear(){
+    colorBar.style.backgroundColor = "transparent";
+    document.getElementById("red").value = "";
+    document.getElementById("green").value = "";
+    document.getElementById("blue").value = "";
+    document.getElementById("hex").innerHTML ="";
+}
+
+</script>
+</html>
