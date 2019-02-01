@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Shuffling a Array</title>
+    <style>
+        #right,#left{
+            display: inline-block;
+        }
+        #array{
+            border: 1px solid rgb(117, 117, 117);
+            width: 400px;
+            height: 138px;
+            overflow-wrap: break-word;
+            overflow: auto;
+        }
+        html, body{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Array Shuffler</h1>
+    <div id="left">
+    <label for="items">Items:</label><br>
+    <textarea name="items" id="items" rows="10" cols="30" placeholder="Please input the items you want add to array, separate them by space"></textarea>
+    <br><input type="submit" id="add" value="Add to Array">
+    </div>
+    <div id="right">
+    Array: 
+    <br>
+    <div id="array">
+    </div>
+    <input type="submit" id="shuffling" value="Shuffle the Array">
+    </div>
+</body>
+<script type="text/javascript" src="e5.js"></script>
+</html>
