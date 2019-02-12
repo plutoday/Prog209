@@ -1,0 +1,53 @@
+#gameZone{
+    width: 70%;
+    display: inline-block;
+}
+#myBag{
+    width: 30%;
+    float: right;
+    text-align: center;
+}
+html,body,header{
+    padding: 0px;
+    margin: 0px;
+ } 
+    header{
+    font-family:'Times New Roman', serif;
+    text-align: center;
+    }
+    footer{
+    font-family:'Times New Roman', serif;
+    padding: 20px;
+    margin:0px;
+    text-align: center;
+    } 
+    html{
+    background-color:white;
+    background-image: url("images/background.jpg");
+	background-repeat: no-repeat;
+    background-position:top;
+    }
+#scene, #move{
+    text-align: center;
+}
+#sceneImage{
+    height: 400px;
+}
+#output{
+    text-align: center;
+    background-color: bisque;
+    margin: 0px 48px 0px 48px;
+    padding: 1px 0px 1px 0px;
+}
+img{
+    max-width: 100%;
+    height: auto;
+    }
+   
+.box{
+    border: 1px solid rgb(0, 0, 0);
+    width: 130px;
+    height: 130px;
+    display: inline-block;
+    margin: 5px;
+}
