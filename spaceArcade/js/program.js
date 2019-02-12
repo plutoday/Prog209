@@ -51,9 +51,9 @@ function restartGame(){
 	document.getElementById("troNum").innerHTML = "Photon torpedoes: "+tro;
 	document.getElementById("fuelNum").innerHTML = "Dilithium fuel: "+fuel +"%";
 	ufo.x = 90;
-	ufo.y = 200;
+	ufo.y = Math.floor(Math.random()*330+70);
 	rocket.x = 490;
-	rocket.y = 390;
+	rocket.y = Math.floor(Math.random()*330+70);
 	ufo.img.style.visibility = "visible";
 	render();
 }
