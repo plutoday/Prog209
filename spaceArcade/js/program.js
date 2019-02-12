@@ -6,6 +6,10 @@ let currentSound = null;
 let tro = 10;
 let pha = 15;
 let ufoNum = 5;
+let fuel = 1000;
+let fuelPercent = 100;
+let last = new Date();
+
 // Arrow key codes
 const UP = 38,
     DOWN = 40,
@@ -29,6 +33,42 @@ let ufo = {
 	y: 200,
 	width: 100
 }
+var keydownHandler = (event) => {
+	// handle user keyboard input
+	if(fuel>0){
+
+	if (event.keyCode == UP) {
+		rocket.y -= velocity;
+		burnFuel();
+	}
+	if (event.keyCode == LEFT) {
+		rocket.x -= velocity;
+		burnFuel();
+	}
+	if (event.keyCode === DOWN) {
+		rocket.y += velocity;
+		burnFuel();
+	}
+	if (event.keyCode == RIGHT) {
+		rocket.x += velocity;
+		burnFuel();
+	}
+	render( );
+
+}
+	if (event.keyCode === W) {
+		ufo.y -= velocity*2.5;
+		render();
+	}
+	if (event.keyCode == Z) {
+		ufo.y += velocity*2.5;
+		render();
+	}
+	if (event.keyCode == S) {
+		firePhaTimer();
+		}
+
+}
 
 const torpedo = document.querySelector("#torpedo"),
 	phaser = document.querySelector("#phaser"),
@@ -39,7 +79,7 @@ const torpedo = document.querySelector("#torpedo"),
 render ( );
 
 startBtn.addEventListener("click",startGameHandler,false);
-fireBtn.addEventListener("click",fireTorpedoHandler,false);
+fireBtn.addEventListener("click",fireTorTimer,false);
 restartBtn.addEventListener("click",restartGame,false);
 window.addEventListener("keydown",keydownHandler,false);
 
@@ -58,6 +98,15 @@ function restartGame(){
 	render();
 }
 
+function fireTorTimer(){
+    var now = new Date();
+    if((now - last)>1000){
+		fireTorpedoHandler();
+	}
+    last = now;
+}
+
+
 function startGameHandler( ) {
 	// Hide the intro screen, show the game screen
 	introScreen.style.display = "none";
@@ -65,6 +114,15 @@ function startGameHandler( ) {
 	rocket.img.style.display = "block";
 	ufo.img.style.display = "block";
 }
+
+function firePhaTimer(){
+	var now = new Date();
+    if((now - last)>2000){
+		firePhaser();
+    }
+    last = now;
+}
+
 function firePhaser(){
 	if (pha>0){
 		pha--;
@@ -153,44 +211,6 @@ function hiddenTorpedo(){
 
 }
 
-function keydownHandler(event) {
-	// handle user keyboard input
-	if(fuel>0){
-
-	if (event.keyCode == UP) {
-		rocket.y -= velocity;
-		burnFuel();
-	}
-	if (event.keyCode == LEFT) {
-		rocket.x -= velocity;
-		burnFuel();
-	}
-	if (event.keyCode === DOWN) {
-		rocket.y += velocity;
-		burnFuel();
-	}
-	if (event.keyCode == RIGHT) {
-		rocket.x += velocity;
-		burnFuel();
-	}
-	render( );
-
-}
-	if (event.keyCode === W) {
-		ufo.y -= velocity*2.5;
-		render();
-	}
-	if (event.keyCode == Z) {
-		ufo.y += velocity*2.5;
-		render();
-	}
-	if (event.keyCode == S) {
-		firePhaser();
-		}
-
-}
-let fuel = 1000;
-let fuelPercent = 100;
 function burnFuel(){
 	fuel--;
 	fuelPercent = fuel/10;
