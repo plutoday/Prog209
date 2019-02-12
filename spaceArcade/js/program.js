@@ -45,6 +45,7 @@ window.addEventListener("keydown",keydownHandler,false);
 
 function restartGame(){
 	fuel = 1000;
+	fuelPercent = 100;
 	tro = 10;
 	pha = 15;
 	ufoNum = 5;
