@@ -50,7 +50,7 @@ function restartGame(){
 	ufoNum = 5;
 	document.getElementById("phaNum").innerHTML = "Phasers: "+pha +" (Press S)";
 	document.getElementById("troNum").innerHTML = "Photon torpedoes: "+tro;
-	document.getElementById("fuelNum").innerHTML = "Dilithium fuel: "+fuel +"%";
+	document.getElementById("fuelNum").innerHTML = "Dilithium fuel: "+fuelPercent +"%";
 	rocket.x = 490;
 	rocket.y = Math.floor(Math.random()*300+70);
 	newUfo();
