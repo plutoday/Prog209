@@ -3,9 +3,9 @@ let sound = document.querySelector("#bomb");
 let soundLong = document.querySelector("#bombLong");
 let currentSound = null;
 
-let fuel = 100;
-let tro = 20;
-let pha = 25;
+let tro = 10;
+let pha = 15;
+let ufoNum = 5;
 // Arrow key codes
 const UP = 38,
     DOWN = 40,
@@ -44,17 +44,16 @@ restartBtn.addEventListener("click",restartGame,false);
 window.addEventListener("keydown",keydownHandler,false);
 
 function restartGame(){
-	fuel = 100;
-	tro = 20;
-	pha = 25;
+	fuel = 1000;
+	tro = 10;
+	pha = 15;
+	ufoNum = 5;
 	document.getElementById("phaNum").innerHTML = "Phasers: "+pha +" (Press S)";
 	document.getElementById("troNum").innerHTML = "Photon torpedoes: "+tro;
 	document.getElementById("fuelNum").innerHTML = "Dilithium fuel: "+fuel +"%";
-	ufo.x = 90;
-	ufo.y = Math.floor(Math.random()*330+70);
 	rocket.x = 490;
-	rocket.y = Math.floor(Math.random()*330+70);
-	ufo.img.style.visibility = "visible";
+	rocket.y = Math.floor(Math.random()*300+70);
+	newUfo();
 	render();
 }
 
@@ -82,11 +81,27 @@ function firePhaser(){
 		if (-40<= distanceY && distanceY<= 40 && 60<= distanceX && distanceX <= 260){
 	
 			setTimeout(hiddenUfo, 2300);
+			if (ufoNum>0){
+				setTimeout(newUfo, 2700);
+			}else{
+				setTimeout(win, 2700);
+			}
 		} else{
 			setTimeout(hiddenPhaser, 2300);
 		}
 }
+		
 }
+	function win(){
+	alert("You win! Please retart the game.");
+	}
+	function newUfo(){
+		ufo.img.style.visibility = "visible";
+		ufo.x = 90;
+		ufo.y = Math.floor(Math.random()*310+70);
+		ufoNum--;
+		render();
+	}
 
 function hiddenPhaser(){
 	document.getElementById("phaser").style.visibility = "hidden";
@@ -111,6 +126,11 @@ function fireTorpedoHandler( ) {
 	let distanceY = rocket.y-ufo.y;
 	if (-40<= distanceY && distanceY<= 40 && 60<= distanceX && distanceX <= 260){
 		setTimeout(hiddenUfo, 1000);
+		if (ufoNum>0){
+			setTimeout(newUfo, 1400);
+		}else{
+			setTimeout(win, 1400);
+		}
 	} else{
 		setTimeout(hiddenTorpedo, 1000);
 	}
@@ -166,10 +186,12 @@ function keydownHandler(event) {
 		}
 
 }
-
+let fuel = 1000;
+let fuelPercent = 100;
 function burnFuel(){
-	fuel = fuel-0.5;
-	document.getElementById("fuelNum").innerHTML = "Dilithium fuel: "+fuel +"%";
+	fuel--;
+	fuelPercent = fuel/10;
+	document.getElementById("fuelNum").innerHTML = "Dilithium fuel: "+fuelPercent +"%";
 }
 
 function render( ) {
