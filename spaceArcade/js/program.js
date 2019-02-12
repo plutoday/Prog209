@@ -33,13 +33,30 @@ let ufo = {
 const torpedo = document.querySelector("#torpedo"),
 	phaser = document.querySelector("#phaser"),
     startBtn = document.querySelector("#start"),
-    fireBtn = document.querySelector("#fire");
+	fireBtn = document.querySelector("#fire"),
+	restartBtn = document.querySelector("#restart");
 // Initialize objects on the screen
 render ( );
 
 startBtn.addEventListener("click",startGameHandler,false);
-fireBtn.addEventListener("click",fireTorpedoHandler,false)
+fireBtn.addEventListener("click",fireTorpedoHandler,false);
+restartBtn.addEventListener("click",restartGame,false);
 window.addEventListener("keydown",keydownHandler,false);
+
+function restartGame(){
+	fuel = 100;
+	tro = 20;
+	pha = 25;
+	document.getElementById("phaNum").innerHTML = "Phasers: "+pha +" (Press S)";
+	document.getElementById("troNum").innerHTML = "Photon torpedoes: "+tro;
+	document.getElementById("fuelNum").innerHTML = "Dilithium fuel: "+fuel +"%";
+	ufo.x = 90;
+	ufo.y = 200;
+	rocket.x = 490;
+	rocket.y = 390;
+	ufo.img.style.visibility = "visible";
+	render();
+}
 
 function startGameHandler( ) {
 	// Hide the intro screen, show the game screen
@@ -64,9 +81,9 @@ function firePhaser(){
 		let distanceY = rocket.y-ufo.y;
 		if (-40<= distanceY && distanceY<= 40 && 60<= distanceX && distanceX <= 260){
 	
-			setTimeout(hiddenUfo, 2500);
+			setTimeout(hiddenUfo, 2300);
 		} else{
-			setTimeout(hiddenPhaser, 2500);
+			setTimeout(hiddenPhaser, 2300);
 		}
 }
 }

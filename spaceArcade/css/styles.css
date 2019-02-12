@@ -45,7 +45,7 @@
 button {
 	font-family: spaceAge;
 	font-size: 150%;
-	padding: 4px 8px;
+	padding: 4px;
 	cursor: pointer;
 	color: white;
 
@@ -60,6 +60,10 @@ button {
 	-webkit-box-shadow: 0px 5px 8px 3px rgba(255,255,255,0.3);
 	-moz-box-shadow: 0px 5px 8px 3px rgba(255,255,255,0.3);
 	box-shadow: 0px 5px 8px 3px rgba(255,255,255,0.3);
+}
+#restart{
+	font-size: 80%;
+	color: yellow;
 }
 button:hover {
 	background: -webkit-linear-gradient(top, #acc7a3, #506651);
@@ -90,9 +94,9 @@ button:hover {
 	position: absolute;
 
 	/* transition */
-	-webkit-transition: left 1.6s ease-out 0s;
-	-moz-transition: left 1.6s ease-out 0s;
-	transition: left 1.6s ease-out 0s;
+	-webkit-transition: left 1.7s ease-out 0s;
+	-moz-transition: left 1.7s ease-out 0s;
+	transition: left 1.7s ease-out 0s;
 }
 
 #ufo {
@@ -119,7 +123,7 @@ button:hover {
 }
 #gameControls {
 	width: 50px;
-	height: 55px;
-	padding-top: 5px;
+	height: 120px;
+	padding-top: 0px;
 	float:left;
 }
