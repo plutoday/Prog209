@@ -178,9 +178,11 @@ function keydownHandler(event) {
 }
 	if (event.keyCode === W) {
 		ufo.y -= velocity*2.5;
+		render();
 	}
 	if (event.keyCode == Z) {
 		ufo.y += velocity*2.5;
+		render();
 	}
 	if (event.keyCode == S) {
 		firePhaser();
