@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tweening Basics</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        body {
+            background-color: #ccc;
+            padding: 0;
+            margin: 0;
+        }
+
+        #icon {
+          position: absolute;
+          left: 950px;
+          top: 500px;
+        }
+        #banner{
+            width: 920px;
+            height: 300px;
+            background-image: url("img/game.jpg");
+            background-size: 100% 500px;
+	        background-repeat: no-repeat;
+            background-position:center;
+        }
+        #adtext1, #adtext2{
+            position: absolute;
+            width: inherit;
+            text-align: center;
+            color:palevioletred;
+            font-size: 2.0em;
+            top: 0;
+            left: 0;
+            text-transform: uppercase;
+            text-shadow: 0 3px 3px rgba(0, 0, 102, 0.5);
+        }
+        #adtext2{
+            font-size: 3.0em;
+        }
+        #d, #c1,#c2,#backpack,#ji,#joy,#pikachu{
+            position: absolute;
+            top: 125px;
+            left: 450px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="banner">
+<div class="ad" id="adtext1">Wanna a game day?</div>
+<div class="ad" id="adtext2">Come to Lulu Game Shop</div>
+<img id="d" src="img/3d-glasses.png" alt="3d-glasses" width="50" height="50">
+<img id="backpack" src="img/backpack.png" alt="backpack" width="50" height="50">
+<img id="c1" src="img/controller.png" alt="controller" width="50" height="50">
+<img id="c2" src="img/game-controller.png" alt="game-controller" width="50" height="50">
+<img id="ji" src="img/jigsaw.png" alt="jigsaw" width="50" height="50">
+<img id="joy" src="img/joystick.png" alt="joystick" width="50" height="50">
+<img id="pikachu" src="img/pikachu.png" alt="pikachu" width="50" height="50">
+
+</div>
+<img id="icon" src="img/blue-zebra.png" alt="blue zebra icon" width="210" height="210">
+
+<!-- load Content Delivery Network (CDN) scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/plugins/CSSPlugin.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/easing/EasePack.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"> </script>
+
+
+
+<!-- add your own script -->
+<script>
+    var icon = document.getElementById("icon");
+    var t1 = document.getElementById("adtext1");
+    var t2 = document.getElementById("adtext2");
+    var d = document.getElementById("d");
+    var backpack = document.getElementById("backpack");
+    var c1 = document.getElementById("c1");
+    var c2 = document.getElementById("c2");
+    var ji = document.getElementById("ji");
+    var joy = document.getElementById("joy");
+    var pikachu = document.getElementById("pikachu");
+    TweenLite.to(icon, 3, {rotation:330,top:0,ease:SteppedEase.config(12), delay:1});
+    TweenLite.to(t1, 2, {rotation:360,top:50,ease: Bounce.easeOut, delay:0.5});
+    TweenLite.to(t2, 2, {top:150,ease:Back.easeOut, delay:1});
+    TweenLite.to(d, 3, {rotation:360,top:0,left: 50, ease:SteppedEase.config(10), delay:0.5});
+    TweenLite.to(backpack, 3, {rotation:360,top:50,left: 100, ease:SteppedEase.config(10), delay:0.6});
+    TweenLite.to(c1, 3, {rotation:360,top:100,left: 150, ease: Bounce.easeOut, delay:0.7});
+    TweenLite.to(c2, 3, {rotation:360,top:200,left: 450, ease: Bounce.easeOut, delay:1});
+    TweenLite.to(ji, 3, {rotation:360,top:50,left: 750, ease:SteppedEase.config(10), delay:0.8});
+    TweenLite.to(joy, 3, {rotation:360,top:200,left: 300, ease: Bounce.easeOut, delay:0.9});
+    TweenLite.to(pikachu, 3, {rotation:360,top:150,left: 850, ease: Bounce.easeOut, delay:1});
+
+
+</script>
+
+
+</body>
+</html>
