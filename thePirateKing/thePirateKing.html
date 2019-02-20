@@ -4,49 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>THE PIRATE KING</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet"  href="pirate.css" type="text/css"/>
 </head>
 <body>
     <header>
-    <h1>THE PIRATE KING</h1>
+    <h2>THE PIRATE KING</h2>
     </header>
-    <div id="gameZone">
-        <div id="scene">
-            <img src="images/scene_0.jpg" id="sceneImage" width="800" height="380" alt="home">
+    <div id="gameSceen">
+        <div id="gameZone">
+            <a href="map.html" target="_blank" id="gameMapBtn">
+                <img src="images/item/map.png" alt="gameMap" width="50" height="50"/>
+            </a>
+            <a href="map.html" target="_blank" id="cheatsheetBtn">
+                    <img src="images/item/manual.png" alt="cheatsheet" width="50" height="50"/>
+                </a>
+            <div id="scene">
+                <img src="images/scene_start.jpg" id="sceneImage" width="600" height="200" alt="scene">
             </div>
-        <div id="move">
-            <div id="output">
-            <p>
-            Hello, Captain Jackie, today is your first day in the boat. Let set off!
-            You can go north, south, and east. Where do you wanna go?
-                    
-            </p>
+            <div id="move">
+                <div id="output">
+                    <p>
+                    Hello, Captain Jackie, today is your first day in the boat. Let set off!
+                    You can go north, south, and east. Where do you wanna go?
+                    </p>
+                </div>
+
+                <div class="wrapper">
+                        <div class="inputBox">
+                            <input type="text" name="input" id="input" placeholder="Enter a command">
+                            <div id="inputButton" class="inputBtn"><i class="fas fa-greater-than"></i></div>
+                        </div>
+                </div>
+                <div id="actions">
+                    <div id="save" class="moveButton"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div id="load" class="moveButton"><i class="fas fa-sync-alt"></i></div>
+                    <div id="startover" class="moveButton"><i class="fas fa-redo-alt"></i></div>
+                </div>
             </div>
-            <input type="text" name="input" id="input" placeholder="Enter a command">
-            <input type="submit" id="comand" value="Enter"><br>
-            <input type="submit" id="save" value="Save Progress">
-            <input type="submit" id="load" value="Load the Game">
-            <input type="submit" id="startover" value="Startover">
+            <div id="errorMessage">
+                </div>
+
         </div>
-    </div>
+
 
     <div id="myBag">
-        <h2>My bagpack</h2>
+        <h2>&nbsp</h2>
         <div class="box">
+            <img src="images/item/empty.png" id="empty" width="70" height="70" alt="empty">
+        </div>
+        <div class="box">
+            <img src="images/item/empty.png" id="empty" width="70" height="70" alt="empty">
 
         </div>
         <div class="box">
-            
+            <img src="images/item/empty.png" id="empty" width="70" height="70" alt="empty">
         </div>
         <div class="box">
-            
-        </div>
-        <div class="box">
-            
+            <img src="images/item/empty.png" id="empty" width="70" height="70" alt="empty">
+
         </div>
     </div>
     <footer>
     </footer>
 </body>
+<script src="jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="pirate.js"></script>
 </html>

@@ -229,5 +229,4 @@ function render( ) {
 	phaser.style.left = (rocket.x -10) + "px";
 	phaser.style.top = (rocket.y+8) + "px";
 	phaser.style.visibility = "hidden";
-
 }
