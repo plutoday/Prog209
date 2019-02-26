@@ -1,8 +1,16 @@
-/*
+
 "use strict";
 
-*/
 
+/*
+================================
+Coder: Xiaoxuan Li
+Date : 02/25/2018
+
+Description: Project 1 - model an pirate adventure game by using object, local storage
+and dynamically adjusted CSS.
+
+*/ 
 
 let scene_start, scene_blank01, scene_blank02, scene_blank03,
 scene_island01, scene_pirate01, scene_greatIsland01, scene_pirate02,
@@ -112,7 +120,7 @@ scene_blank02 = {
 	script: "It seems nothing here! You can go north, south, and east."
 };
 
-
+/* connect scenes*/
 function setup() {
 	connectNorthSouth(scene_blank01, scene_start);
 	connectNorthSouth(scene_start, scene_blank02);
@@ -181,6 +189,7 @@ let bag = ["empty", "empty", "empty", "empty"];
 
 setup();
 
+/* restore current scene from local storage*/
 $('#load').click(function(){
 
 	if(typeof(Storage)!=="undefined"){
@@ -199,6 +208,7 @@ $('#load').click(function(){
 
 });
 
+/* save current scene to local storage*/
 $('#save').click(function(){
 	let indexOfCurrentScene = scenes.indexOf(currentScene);
 	sceneJSON = JSON.stringify(indexOfCurrentScene);	
@@ -206,7 +216,11 @@ $('#save').click(function(){
 
 });
 
+/* take actions when enter key clicked*/
 $('#inputButton').click(takeAction);
+
+
+
 
 let keydownHandler = (event) => {
 	// handle user keyboard input
@@ -216,6 +230,8 @@ let keydownHandler = (event) => {
 	}
 
 }
+
+/* take actions when enter key on keyborad pressed*/
 window.addEventListener("keydown",keydownHandler,false);
 
 
@@ -271,7 +287,7 @@ function takeAction(){
 	}
 }
 
-
+/* check if an item is in bag*/
 function checkComand(input){
 let inputItem = input.split(" ")[1];
 
@@ -284,6 +300,7 @@ for (let i = 0; i<bag.length;i++){
 
 }
 
+/* get first index which is empty in bag or is full*/
 function checkEmpty(input){
 	for (let i = 0; i<bag.length;i++){
 		if(bag[i]=="empty"){
@@ -293,11 +310,14 @@ function checkEmpty(input){
 		return false;
 }
 
+/* start over the game*/
+
 $('#startover').click(function(){
 	currentScene = scene_start;
     window.location.reload();
 });
 
+/* render scene*/
 
 function render(){
 	
