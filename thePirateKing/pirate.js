@@ -295,7 +295,7 @@ function checkEmpty(input){
 
 $('#startover').click(function(){
 	currentScene = scene_start;
-    render();
+    window.location.reload();
 });
 
 
