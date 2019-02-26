@@ -1,0 +1,12 @@
+body{
+    background-image: url("gameMap.png");
+    background-repeat: no-repeat;
+    background-size: 1150px;
+    background-position:top;
+    min-width: 900px;
+}
+img{
+    position: absolute;
+    top: 530px;
+    left: 950px;
+}

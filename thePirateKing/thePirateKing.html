@@ -13,33 +13,32 @@
     </header>
     <div id="gameSceen">
         <div id="gameZone">
-            <a href="map.html" target="_blank" id="gameMapBtn">
-                <img src="images/item/map.png" alt="gameMap" width="50" height="50"/>
+            <a href="map2.html" target="_blank" id="gameMapBtn">
+                <img src="images/item/address.png" alt="gameMap" width="50" height="50"/>
             </a>
             <a href="map.html" target="_blank" id="cheatsheetBtn">
-                    <img src="images/item/manual.png" alt="cheatsheet" width="50" height="50"/>
+                    <img src="images/item/lightbulb.png" alt="cheatsheet" width="50" height="50"/>
                 </a>
             <div id="scene">
-                <img src="images/scene_start.jpg" id="sceneImage" width="600" height="200" alt="scene">
+                <img src="images/start.jpg" id="sceneImage" width="600" height="200" alt="scene">
+                <div id="item">
+                <img src="images/item/blank.png" id="itemImage" width="50" height="50" alt="itemImage">
+                </div>
+
             </div>
             <div id="move">
                 <div id="output">
                     <p>
-                    Hello, Captain Jackie, today is your first day in the boat. Let set off!
-                    You can go north, south, and east. Where do you wanna go?
+                            Hello, Captain, this is where you start the trip. Let's go find the treasure!
+                             You can go north, south, and east. Where do you wanna go?
                     </p>
                 </div>
-
-                <div class="wrapper">
-                        <div class="inputBox">
                             <input type="text" name="input" id="input" placeholder="Enter a command">
-                            <div id="inputButton" class="inputBtn"><i class="fas fa-greater-than"></i></div>
-                        </div>
-                </div>
+                            <button id="inputButton">Enter</button>
                 <div id="actions">
-                    <div id="save" class="moveButton"><i class="fas fa-cloud-upload-alt"></i></div>
-                    <div id="load" class="moveButton"><i class="fas fa-sync-alt"></i></div>
-                    <div id="startover" class="moveButton"><i class="fas fa-redo-alt"></i></div>
+                    <button id="save" >Save</button>
+                    <button id="load" >Load</button>
+                    <button id="startover" >Startover</button>
                 </div>
             </div>
             <div id="errorMessage">
@@ -49,25 +48,28 @@
 
 
     <div id="myBag">
-        <h2>&nbsp</h2>
+        <div>
+        <h3>YOUR BAG</h3>
+        <div>
         <div class="box">
-            <img src="images/item/empty.png" id="empty" width="70" height="70" alt="empty">
+            <img src="images/item/empty.png" id="empty1" width="70" height="70" alt="empty">
         </div>
         <div class="box">
-            <img src="images/item/empty.png" id="empty" width="70" height="70" alt="empty">
+            <img src="images/item/empty.png" id="empty2" width="70" height="70" alt="empty">
 
         </div>
         <div class="box">
-            <img src="images/item/empty.png" id="empty" width="70" height="70" alt="empty">
+            <img src="images/item/empty.png" id="empty3" width="70" height="70" alt="empty">
         </div>
         <div class="box">
-            <img src="images/item/empty.png" id="empty" width="70" height="70" alt="empty">
+            <img src="images/item/empty.png" id="empty4" width="70" height="70" alt="empty">
 
         </div>
     </div>
     <footer>
     </footer>
-</body>
-<script src="jquery-3.3.1.min.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="pirate.js"></script>
+</body>
+
 </html>

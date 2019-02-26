@@ -2,21 +2,21 @@
     width: 75%;
     display: inline-block;
     text-align: center;
+    height: 600px;
+
 
 }
 #myBag{
     width: 20%;
     float: right;
     text-align: center;
-    background-color: rgba(59, 53, 47, 0.1);
-    box-shadow: 1px 5px 5px 1px rgb(102, 78, 50);
+    background-color: transparent;
+    border: 1px dashed rgb(102, 78, 50);
     border-radius: 30px;
+    padding-top: 20px;
     margin: 20px 25px 0 0;
     padding-bottom: 20px;
-    background-image: url("images/item/bag.png");
-    background-repeat: no-repeat;
-    background-size: 30%;
-    background-position: 50% 10px;
+    
 }
 #myBag .box img{
     margin: 10px auto;
@@ -35,7 +35,7 @@ html,body,header{
     font-family:'Times New Roman', serif;
     padding: 20px;
     margin:0px;
-    text-align: center;
+    text-align: center;background-origin: padding-box;
     } 
     body{
     background-color:white;
@@ -48,12 +48,27 @@ html,body,header{
     width: 80%;
     height: 600px;
     background-color:  rgba(230, 198, 162, 0.8);
-    margin: 5px auto; 
+    margin: 15px auto; 
     border-radius: 20px;
     box-shadow: 10px 15px 15px 10px rgb(102, 78, 50);
 }
 #scene{
     margin: 25px auto; 
+}
+#scene #item{
+    position: absolute;
+    top: 250px;
+    left: 250px;
+    display: none;
+    background-color: white;
+    border-radius: 50px;
+    width: 70px;
+    height: 70px;
+
+}
+#scene #item #itemImage{
+    position: relative;
+    top: 10px;
 }
 #move{
     text-align: center;
@@ -73,11 +88,14 @@ img{
     max-width: 100%;
     height: auto;
     }
+
    
 .box{
-    border: 1px solid rgb(175, 139, 101);
+    border: 1px dashed rgb(175, 139, 101);
     width: 90px;
     height: 90px;
+    max-width: 100%;
+    height: auto;
     display: inline-block;
     margin: 5px;
     border-radius: 10px;
@@ -95,21 +113,12 @@ img{
     left: 65%;
 }
 
-.wrapper{
-    position: absolute;
-    top: 460px;
-    left: 40%;
-    transform: translate(-50%,50%);/*remove negitive margin*/
-  }
-  .inputBox{
-    position: relative;
-  }
   #input{
   width: 200px;
   border:0;
   height: 30px;
   padding: 0px 5px;
-  border-radius: 50px;
+  border-radius: 10px;
   box-shadow: 0 0 3px 1px #b6bbc0;
   outline: none;
   color: rgb(44, 29, 14);
@@ -117,38 +126,51 @@ img{
   font-weight: bold;
   transition: all 0.5s linear;
   }
-  .inputBtn{
-    position: absolute;
-    top: 0;
-    right: -1px;
-    background: rgb(44, 29, 14);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.5s linear;
-  }
-  .inputBtn .fas{
-    position: absolute;
-    top: 1px;
-    left: 50%;
+
+.fas{
     transform: translate(-50%,50%);
-    color: #fcf6d7;
+    color: black;
     font-size: 14px;
     transition: all 0.5s linear;
+    position: static;
+    float: right;
   }
 
 #actions{
     position: relative;
-    top: 50px;
+    top: 10px;
 }
 #save, #load, #startover{
     display: inline-block;
 }
-#save, #load, #startover .fas{
-    font-size: 22px;
-    color: rgb(44, 29, 14);
+#save, #load, #startover, #inputButton{
+    font-size: 15px;
+    color: rgb(134, 102, 68);
     margin: 0 5px 0 5px;
     cursor: pointer;
+    padding: 4px;
+	cursor: pointer;
+	color: white;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+	background: -webkit-linear-gradient(top, rgb(211, 181, 148), rgb(134, 102, 68));
+	background: -moz-linear-gradient(top, rgb(211, 181, 148), rgb(134, 102, 68));
+	background: linear-gradient(top, rgb(211, 181, 148), rgb(134, 102, 68));
+
+	-webkit-box-shadow: 0px 5px 8px 3px rgba(255,255,255,0.3);
+	-moz-box-shadow: 0px 5px 8px 3px rgba(255,255,255,0.3);
+	box-shadow: 0px 5px 8px 3px rgba(255,255,255,0.3);
 
 }
+#errorMessage{
+    position: relative;
+    top: 10px;
+}
+
+p{
+    font-size: 18px;
+}
+

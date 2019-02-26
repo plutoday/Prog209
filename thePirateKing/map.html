@@ -23,6 +23,7 @@
             top: 240px;
             left: 50px;
         }
+
         #ocean2{
             position: absolute;
             top: 370px;
@@ -48,6 +49,7 @@
             position: absolute;
             top: 370px;
             left: 250px;
+            color: white;
         }
         #pirate2{
             position: absolute;
@@ -66,11 +68,14 @@
             position: absolute;
             top: 240px;
             left: 480px;
+            color: white;
         }
         #star3{
             position: absolute;
             top: 370px;
             left: 480px;
+            color: white;
+
         }
 
         #island2{
@@ -88,6 +93,8 @@
             position: absolute;
             top: 240px;
             left: 650px;
+            color: white;
+
         }
         #star6{
             position: absolute;
@@ -104,6 +111,12 @@
             top: 100px;
             left: 820px;
         }
+        #commandList{
+            position: absolute;
+            top: 0px;
+            left: 1000px;
+            background-color: antiquewhite;
+        }
 
     </style>
 </head>
@@ -117,23 +130,78 @@
         </div>
         <img src="mapIcons/oceanSun.png" id="ocean2" width="40" height="40" alt="ocean">
         <img src="mapIcons/ocean.png" id="ocean3" width="40" height="40" alt="ocean">
-        <img src="mapIcons/island.png" id="island1" width="40" height="40" alt="island">
-        <img src="mapIcons/pirate-ship.png" id="pirate1" width="40" height="40" alt="pirate">
-        <img src="mapIcons/star.png" id="star1" width="40" height="40" alt="star">
-        <img src="mapIcons/pirate-ship.png" id="pirate2" width="40" height="40" alt="pirate">
-        <img src="mapIcons/pirate-ship.png" id="pirate3" width="40" height="40" alt="pirate">
-        <img src="mapIcons/star.png" id="star2" width="40" height="40" alt="star">
-        <img src="mapIcons/star.png" id="star3" width="40" height="40" alt="star">
-        <img src="mapIcons/island.png" id="island2" width="40" height="40" alt="island">
+        <div id="island1">
+        <img src="mapIcons/island.png" width="40" height="40" alt="island">
+        Telescope
+        </div>
+        <div id="pirate1">
+        <img src="mapIcons/pirate-ship.png"  width="40" height="40" alt="pirate">
+        Pistol
+        </div>
+        <div id="star1">
+        <img src="mapIcons/star.png" width="40" height="40" alt="star">
+        Coin
+        </div>
+        <div id="pirate2">
+        <img src="mapIcons/pirate-ship.png" width="40" height="40" alt="pirate">
+        Water
+        </div>
+        <div id="pirate3">
+        <img src="mapIcons/pirate-ship.png" width="40" height="40" alt="pirate">
+        Cloth
+        </div>
+        <div id="star2">
+        <img src="mapIcons/star.png" width="40" height="40" alt="star">
+        Boots
+        </div>
+        <div id="star3">
+        <img src="mapIcons/star.png" width="40" height="40" alt="star">
+        Key
+        </div>
+        <div  id="island2">
+        <img src="mapIcons/island.png" width="40" height="40" alt="island">
+        Map
+        </div>
         <img src="mapIcons/star.png" id="star4" width="40" height="40" alt="star">
-        <img src="mapIcons/star.png" id="star5" width="40" height="40" alt="star">
+        <div id="star5">
+        <img src="mapIcons/star.png"  width="40" height="40" alt="star">
+        Wine
+        </div>
         <img src="mapIcons/star.png" id="star6" width="40" height="40" alt="star">
         <img src="mapIcons/oceanSun.png" id="ocean4" width="40" height="40" alt="ocean">
         <div id="flag">
         <img src="mapIcons/flag.png" width="40" height="40" alt="flag">
         Treasure is here!
         </div>
-
-
+        <div id="commandList">
+            <h2>Commands List</h2>
+            <h3>Directions</h3>
+            <ul>
+                <li>north</li>
+                <li>south</li>
+                <li>west</li>
+                <li>east</li>
+            </ul>
+            <h3>Actions</h3>
+                <li>get telescope</li>
+                <li>get pistol</li>
+                <li>get coin</li>
+                <li>get water</li>
+                <li>get cloth</li>
+                <li>get boots</li>
+                <li>get key</li>
+                <li>get map</li>
+                <li>get wine</li>
+                <li>drop telescope</li>
+                <li>drop pistol</li>
+                <li>drop coin</li>
+                <li>drop water</li>
+                <li>drop cloth</li>
+                <li>drop boots</li>
+                <li>drop key</li>
+                <li>drop map</li>
+                <li>drop wine</li>
+                <li>use key</li>
+            </div>
 </body>
 </html>
