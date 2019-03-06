@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>THE FLOWER</title>
+    <style>
+        html{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+         margin: 0;
+         padding: 0;
+         background-color: pink;
+         background-image: url("rose.png");
+         background-size: 100px;
+         background-repeat: space;
+        }
+        #image{
+            height: 350px;
+        }
+        header{
+        height: 40px;
+        margin: 0 auto;
+        padding: 0;
+        background-color: green;
+        width: 500px;
+        text-align: center;
+        color: aliceblue;
+
+        }
+        #image, #buttons{
+            margin: 0 auto;
+            width: 500px;
+            text-align: center;
+
+        }
+        #up, #in, #toggle{
+            font-size: 26px;
+        color: yellow;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 auto;
+    cursor: pointer;
+    background-color:green;
+        }
+        </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Flower Animation</h1>
+        </header>
+    <div id="image">
+    <img src="flower.jpg" id="flower" width="500" height="350" alt="flower">
+    </div>
+    <div id="buttons">
+    <button id="up" >Slide Up</button>
+    <button id="in" >Fade in</button>
+    <button id="toggle" >Hide</button>
+
+    </div>
+
+<script>
+$('#toggle').click(function(){
+$('#flower').toggle(2000);
+toggleButtonText();
+togglePicutureShown();
+});
+
+pictureShown = true;
+
+function togglePicutureShown() {
+    if (pictureShown == true) {
+        pictureShown = false;
+    } else {
+        pictureShown = true;
+    }
+}
+
+function toggleButtonText(){
+
+if ($('#toggle').text() == "Show"){
+    $('#toggle').text("Hide");
+} else{
+    $('#toggle').text("Show");
+
+}
+}
+
+$('#in').click(function(){
+    if (pictureShown == false) {
+    $('#flower').fadeIn(3000);
+    toggleButtonText();
+    togglePicutureShown();
+    }
+});
+
+$('#up').click(function(){
+    if (pictureShown == true) {
+    $('#flower').slideUp(3000);
+    toggleButtonText();
+    togglePicutureShown();
+    }
+});
+
+
+
+</script>
+</body>
+</html>
