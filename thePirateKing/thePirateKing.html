@@ -4,27 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>THE PIRATE KING</title>
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Charm" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet"  href="pirate.css" type="text/css"/>
 </head>
 <body>
     <header>
-    <h2>THE PIRATE KING</h2>
+    <h1>THE PIRATE KING</h1>
     </header>
     <div id="gameSceen">
+        <div id="startSceen">
+            <h2>Your dream of being the captain of the pirate ship is about to come true!</h2>
+            <img src="images/bg3.gif" id="bgs" width="400" height="400" alt="bg">
+            <h3>Let's start the trip...</h3>
+        <button id="start" >Start the Game</button>
+        </div>
+        <div id="welcomeScript">
+        </div> 
         <div id="gameZone">
-            <a href="map2.html" target="_blank" id="gameMapBtn">
-                <img src="images/item/address.png" alt="gameMap" width="50" height="50"/>
-            </a>
-            <a href="map.html" target="_blank" id="cheatsheetBtn">
-                    <img src="images/item/lightbulb.png" alt="cheatsheet" width="50" height="50"/>
-                </a>
+            <div id="leftScene">
             <div id="scene">
-                <img src="images/start.jpg" id="sceneImage" width="600" height="200" alt="scene">
+                <img src="images/start.jpg" id="sceneImage" width="660" height="220" alt="scene">
                 <div id="item">
                 <img src="images/item/blank.png" id="itemImage" width="50" height="50" alt="itemImage">
                 </div>
-
             </div>
             <div id="move">
                 <div id="output">
@@ -40,17 +45,30 @@
                     <button id="load" >Load</button>
                     <button id="startover" >Startover</button>
                 </div>
+                <div id="errorMessage">
+                </div>
             </div>
-            <div id="errorMessage">
+            </div>
+
+                <div id="menu">
+                        <a href="map2.html" target="_blank" id="gameMapBtn">
+                            <img src="images/item/address.png" alt="gameMap" width="35" height="35"/>
+                        </a>
+                        <a href="map.html" target="_blank" id="cheatsheetBtn">
+                            <img src="images/item/lightbulb.png" alt="cheatsheet" width="35" height="35"/>
+                        </a>
                 </div>
 
         </div>
-
+        <div id="endSceen">
+                <h1>Congrats, you win!</h1>
+                <img src="images/congrats.gif" id="bgw" width="400" height="400" alt="bg">
+                  </div>
 
     <div id="myBag">
         <div>
         <h3>YOUR BAG</h3>
-        <div>
+        </div>
         <div class="box">
             <img src="images/item/empty.png" id="empty1" width="70" height="70" alt="empty">
         </div>
@@ -65,6 +83,7 @@
             <img src="images/item/empty.png" id="empty4" width="70" height="70" alt="empty">
 
         </div>
+    </div>
     </div>
     <footer>
     </footer>

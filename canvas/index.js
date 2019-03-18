@@ -12,6 +12,7 @@ var ctx = canvas.getContext("2d");
 var canvas2 = document.querySelector("#myCanvas2");
 var ctx2 = canvas2.getContext("2d");
 
+
 ctx.save();			// save previous display state
 //  set drawing properties for the sign
 ctx.lineWidth = 32;	       // nice wide line		

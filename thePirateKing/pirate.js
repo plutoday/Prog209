@@ -170,7 +170,9 @@ function connectNorthSouth(scene1, scene2) {
 let input;
 let currentSceneJson;
 let sceneJSON;
-let currentScene = scene_start;
+let currentBagJson;
+let bagJSON;
+let currentScene;
 let errorMessage = document.querySelector("#errorMessage");
 let itemImage = document.querySelector("#itemImage");
 let empty1 = document.querySelector("#empty1");
@@ -184,10 +186,26 @@ let scenes = [scene_start, scene_blank01, scene_blank02, scene_blank03,
 	scene_greatIsland04, scene_greatIsland05, scene_greatIsland06, scene_blank04,
 	scene_greatIslandWin];
 let bag = ["empty", "empty", "empty", "empty"];
+var i = 0;
+var txt ="You are on board a pirate ship. The captain and the other crew went on shore to secure supplies. You were trusted to guard the ship. You know there is a treasure map and you just know it has to lead to some vast fortune. Now is your chance to get it all for yourself! You steal the ship while they are away.......Press enter to continue the trip......"
+var speed = 50;
+var finishText = false;
+
 
 
 
 setup();
+$('#start').click(function typeWriter(){
+	document.getElementById("startSceen").style.display = "none";
+	if (i < txt.length) {
+		document.getElementById("welcomeScript").style.display = "block";
+		document.getElementById("welcomeScript").innerHTML += txt.charAt(i);
+		i++;
+		setTimeout(typeWriter, speed);
+	} else{
+	  finishText=true;
+	}
+});
 
 /* restore current scene from local storage*/
 $('#load').click(function(){
@@ -198,7 +216,12 @@ $('#load').click(function(){
 		let index = parseInt(JSON.parse(currentSceneJson));
 		currentScene = scenes[index];
 		console.log(currentScene);
+		currentBagJson = localStorage.getItem("bagJson");
+		bag = JSON.parse(currentBagJson);
+		console.log(bag);
+		bagRender();
 		render();
+
 		}
 		
 		else{
@@ -213,6 +236,8 @@ $('#save').click(function(){
 	let indexOfCurrentScene = scenes.indexOf(currentScene);
 	sceneJSON = JSON.stringify(indexOfCurrentScene);	
 	localStorage.setItem("sceneJson",sceneJSON);
+	bagJSON = JSON.stringify(bag);	
+	localStorage.setItem("bagJson",bagJSON);
 
 });
 
@@ -226,7 +251,14 @@ let keydownHandler = (event) => {
 	// handle user keyboard input
 
 	if (event.keyCode == 13) {
-		takeAction();
+		if (currentScene == undefined && finishText==true) {
+			console.log(finishText);
+			document.getElementById("gameZone").style.display = "inline-block";
+			document.getElementById("myBag").style.display = "inline-block";
+			document.getElementById("welcomeScript").style.display = "none";
+			currentScene = scene_start;		
+		}else 
+			takeAction();
 	}
 
 }
@@ -246,7 +278,9 @@ function takeAction(){
 			errorMessage.innerHTML = "you input the wrong direction";
 		} else {
 			// The property exists
+			console.log("currentScene is " + currentScene.url + "before change");
 			currentScene = currentScene[input];
+			console.log("currentScene is " + currentScene.url + "after change");
 			errorMessage.innerHTML = "";
 			render();
 		}
@@ -259,6 +293,9 @@ function takeAction(){
 				bagImage[emptyId].src = currentScene["itemUrl"];
 				currentScene.item = undefined;
 				render();
+				if (bag[emptyId]=="treasure"){
+					setTimeout(winScene, 1500);
+				}
 			} else {
 				errorMessage.innerHTML = "your bag is full, you have to drop one of the items";
 
@@ -299,6 +336,11 @@ for (let i = 0; i<bag.length;i++){
     return false;
 
 }
+function winScene(){
+
+	document.getElementById("endSceen").style.display = "inline-block";
+
+}
 
 /* get first index which is empty in bag or is full*/
 function checkEmpty(input){
@@ -314,7 +356,9 @@ function checkEmpty(input){
 
 $('#startover').click(function(){
 	currentScene = scene_start;
-    window.location.reload();
+	bag = ["empty", "empty", "empty", "empty"];
+	bagRender();
+	render();
 });
 
 /* render scene*/
@@ -355,3 +399,53 @@ function render(){
 	}
 	
 }
+
+function bagRender(){
+for(let i = 0; i<bag.length;i++){
+switch(bag[i]){
+	case "telescope":
+	bagImage[i].src = "images/item/telescope.png";
+	scene_island01.item = undefined;
+	break;
+	case "pistol":
+	bagImage[i].src = "images/item/gun.png";
+	scene_pirate01.item = undefined;
+	break;
+	case "coin":
+	bagImage[i].src = "images/item/coin.png";
+	scene_greatIsland01.item = undefined;
+	break;
+	case "water":
+	bagImage[i].src = "images/item/water.png";
+	scene_pirate02.item = undefined;
+	break;
+	case "cloth":
+	bagImage[i].src = "images/item/cloth.png";
+	scene_pirate03.item = undefined;
+	break;
+	case "boots":
+	bagImage[i].src = "images/item/wooden-leg.png";
+	scene_greatIsland02.item = undefined;
+	break;
+	case "key":
+	bagImage[i].src = "images/item/key.png";
+	scene_greatIsland03.item = undefined;
+	break;
+	case "map":
+	bagImage[i].src = "images/item/map1.png";
+	scene_island02.item =undefined;
+	break;
+	case "wine":
+	bagImage[i].src = "images/item/wine-bottle.png";
+	scene_greatIsland05.item = undefined;
+	break;
+	case "treasure":
+	bagImage[i].src = "images/item/treasure.png";
+	scene_greatIslandWin.item = undefined;
+	break;
+	case "empty":
+	bagImage[i].src = "images/item/empty.png";
+	break;
+}
+}
+} 
