@@ -447,7 +447,7 @@ function render(){
 /* restore current scene and bag from local storage*/
 $("#load").click(function(){
 
-	if(Storage!==undefined){
+	if(typeof(Storage) !== "undefined"){
 	
 		currentSceneJson = localStorage.getItem("sceneJson");
 		let index = parseInt(JSON.parse(currentSceneJson));
