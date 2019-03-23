@@ -2,13 +2,11 @@
 /*
 ================================================================
 Coder: Xiaoxuan Li
-Date : 02/25/2018
+Date : 03/22/2018
 
 Description: Project 2 - An adventure game by using object, local storage
 and dynamically adjusted CSS.
 */
-
-
 /* connect scenes in the direction of east and west*/
 function connectWestEast(scene1, scene2) {
 	scene1.east = scene2;
@@ -259,7 +257,7 @@ function setupScenes() {
 		scene_greatIsland04, scene_greatIsland05, scene_greatIsland06, 
 		scene_blank04, scene_greatIslandWin, scene_blank02];
 	return gameScenes;
-}
+};
 
 
 let scenes = getScenes();
@@ -289,8 +287,6 @@ $("#bgs").show(2000);
 $("#startText2").fadeIn(2000);
 
 
-
-
 /* method to print welcome script when start game button is clicked*/
 $("#start").click(function typeWriter(){
 	const txt =`You are on board a pirate ship. 
@@ -316,29 +312,142 @@ $("#start").click(function typeWriter(){
 	}
 });
 
-// handle user keyboard input
-var keydownHandler = (event) =>  {
-
-	if (event.keyCode === 13) {
-		if (currentScene == undefined && finishText==true) {
-			console.log(finishText);
-			$("#gameZone").css("display", "inline-block");
-			$("#myBag").css("display", "inline-block");
-			$("#welcomeScript").css("display", "none");
-			currentScene = scenes[0];		
-		}else{
-			takeAction();
-		}
-	}
-}
-
+/* take actions when enter key on keyborad pressed*/
 window.addEventListener("keydown",keydownHandler,false);
 
+
+
+/* take actions when enter key clicked*/
+$("#inputButton").click(takeAction);
+
+
+/* check if an item is in bag*/
+function checkComand(input){
+let inputItem = input.split(" ")[1];
+let i;
+for (i = 0; i<bag.length;i+=1){
+	if(inputItem===bag[i]){
+		return i;
+	}
+}
+    return false;
+
+}
+
+/* show win scene to users*/
+function winScene(){
+
+	$("#endSceen").css("display", "inline-block");
+
+}
+
+/* get first index which is empty in bag or is full*/
+function checkEmpty(input){
+	let i;
+	for (i = 0; i<bag.length;i+=1){
+		if(bag[i]==="empty"){
+			return i;
+		}
+	}
+		return false;
+}
+
+/* render bag*/
+function bagRender(){
+let i;
+for(i = 0; i<bag.length;i+=1){
+switch(bag[i]){
+	case "telescope":
+	bagImage[i].attr("src", "images/item/telescope.png");
+	scenes[3].item = undefined;
+	break;
+	case "pistol":
+	bagImage[i].attr("src", "images/item/gun.png");
+	scenes[4].item = undefined;
+	break;
+	case "coin":
+	bagImage[i].attr("src", "images/item/coin.png");
+	scenes[5].item = undefined;
+	break;
+	case "water":
+	bagImage[i].attr("src", "images/item/water.png");
+	scenes[6].item = undefined;
+	break;
+	case "cloth":
+	bagImage[i].attr("src", "images/item/cloth.png");
+	scenes[7].item = undefined;
+	break;
+	case "boots":
+	bagImage[i].attr("src", "images/item/wooden-leg.png");
+	scenes[8].item = undefined;
+	break;
+	case "key":
+	bagImage[i].attr("src", "images/item/key.png");
+	scenes[9].item = undefined;
+	break;
+	case "map":
+	bagImage[i].attr("src", "images/item/map1.png");
+	scenes[10].item =undefined;
+	break;
+	case "wine":
+	bagImage[i].attr("src", "images/item/wine-bottle.png");
+	scenes[12].item = undefined;
+	break;
+	case "treasure":
+	bagImage[i].attr("src", "images/item/treasure.png");
+	scenes[15].item = undefined;
+	break;
+	case "empty":
+	bagImage[i].attr("src", "images/item/empty.png");
+	break;
+}
+}
+} 
+
+/* render scene*/
+function render(){
+	bagRender();
+	script = currentScene.getScript();
+	if (currentScene === scenes[11]){
+		if (bag.includes("wine") || (bag.includes("cloth") && bag.includes("boots"))){
+			connectWestEast(scenes[11], scenes[15]);
+			script = `It's so cold here. Lucky you have cloth and boots or wine. 
+			Let's contine the journey, go east to find to treasure!`;
+		} else {
+			script = `It s cold here. You don't have cloth and 
+			boots or wine to support you, 
+			go back find them and continue your journey!`;
+			currentScene.east = undefined;
+		}
+	}
+	if (currentScene === scenes[8]){
+		console.log("yeahh");
+
+		currentScene.item = undefined;
+		if (bag.includes("key")){
+			script = `The door is locked, use key to open it. You can go north, 
+			south, west, and east.`;
+
+		} else {
+			script = `The door is locked, go to find the key. You can go north, 
+			south, west, and east.`;
+		}
+	}
+	$("#sceneImage").attr("src", currentScene.url);
+	$("#output").html("<p>" + script + "</p>");
+	
+	if (currentScene.item===undefined){
+		itemP.css("display", "none");
+	}else{
+		itemImage.attr("src", currentScene.itemUrl);
+		itemP.css("display", "block");
+	}	
+}
 
 /* restore current scene and bag from local storage*/
 $("#load").click(function(){
 
-	if(typeof(Storage)!=="undefined"){
+	if(Storage!==undefined){
 	
 		currentSceneJson = localStorage.getItem("sceneJson");
 		let index = parseInt(JSON.parse(currentSceneJson));
@@ -373,17 +482,14 @@ $("#startover").click(function(){
 	render();
 });
 
-/* take actions when enter key clicked*/
-$("#inputButton").click(takeAction);
-/* take actions when enter key on keyborad pressed*/
-
 
 function takeAction(){
 	input = $("#input").val().trim().toLowerCase();
     $("#input").val("");
-	if(input == "south" || input == "north" || input =="west" || input =="east"){
+	if(input === "south" || input === "north" || 
+	input ==="west" || input ==="east"){
 
-		if(typeof(currentScene[input])=== "undefined"){
+		if(currentScene[input]=== undefined){
 			// The property DOESN'T exists
 			errorMessage.html("you input the wrong direction");
 		} else {
@@ -393,15 +499,14 @@ function takeAction(){
 			render();
 		}
 	} else {
-		if (input == "get " + currentScene.item) {
+		if (input === "get " + currentScene.item) {
 			if (bag.includes("empty")){
 				emptyId =  checkEmpty(input);
 				bag[emptyId] = currentScene.item;
 				bagImage[emptyId].attr("src", currentScene.itemUrl);
 				currentScene.item = undefined;
 				render();
-				console.log(bag);
-				if (bag[emptyId]=="treasure"){
+				if (bag[emptyId]==="treasure"){
 					setTimeout(winScene, 1500);
 				}
 			} else {
@@ -409,13 +514,12 @@ function takeAction(){
 				drop one of the items`);
 
 			}
-	  	} else if (input == "drop " + bag[checkComand(input)]) {
+	  	} else if (input === "drop " + bag[checkComand(input)]) {
 			emptyId =  checkComand(input);
-			console.log("emptyId=" + emptyId);
 			bagImage[emptyId].attr("src", "images/item/empty.png");
 			bag[emptyId]= "empty";
 			render();
-		} else if (input == "use key" && currentScene == scenes[8]){
+		} else if (input === "use key" && currentScene === scenes[8]){
 			emptyId =  checkComand(input);
 			console.log("use key");
 			bagImage[emptyId].attr("src", "images/item/empty.png");
@@ -433,129 +537,18 @@ function takeAction(){
 		}
 	}
 }
+// handle user keyboard input
+function keydownHandler(event) {
 
-/* check if an item is in bag*/
-function checkComand(input){
-let inputItem = input.split(" ")[1];
-let i;
-for (i = 0; i<bag.length;i+=1){
-	if(inputItem==bag[i]){
-		return i;
-	}
-}
-    return false;
-
-}
-function winScene(){
-
-	$("#endSceen").css("display", "inline-block");
-
-}
-
-/* get first index which is empty in bag or is full*/
-function checkEmpty(input){
-	let i;
-	for (i = 0; i<bag.length;i+=1){
-		if(bag[i]=="empty"){
-			return i;
+	if (event.keyCode === 13) {
+		if (currentScene === undefined && finishText===true) {
+			console.log(finishText);
+			$("#gameZone").css("display", "inline-block");
+			$("#myBag").css("display", "inline-block");
+			$("#welcomeScript").css("display", "none");
+			currentScene = scenes[0];		
+		}else{
+			takeAction();
 		}
 	}
-		return false;
 }
-
-
-
-/* render scene*/
-function render(){
-	bagRender();
-	script = currentScene.getScript();
-	if (currentScene == scenes[11]){
-		if (bag.includes("wine") || (bag.includes("cloth") && bag.includes("boots"))){
-			connectWestEast(scenes[11], scenes[15]);
-			script = `It's so cold here. Lucky you have cloth and boots or wine. 
-			Let's contine the journey, go east to find to treasure!`;
-		} else {
-			script = `It s cold here. You don't have cloth and 
-			boots or wine to support you, 
-			go back find them and continue your journey!`;
-			currentScene.east = undefined;
-		}
-	}
-	if (currentScene == scenes[8]){
-		console.log("yeahh");
-
-		currentScene.item = undefined;
-		if (bag.includes("key")){
-			script = `The door is locked, use key to open it. You can go north, 
-			south, west, and east.`;
-
-		} else {
-			script = `The door is locked, go to find the key. You can go north, 
-			south, west, and east.`;
-		}
-	}
-	$("#sceneImage").attr("src", currentScene.url);
-	$("#output").html("<p>" + script + "</p>");
-	
-	if (currentScene.item==undefined){
-		itemP.css("display", "none");
-		console.log("none");
-	}else{
-		console.log("itemx");
-		itemImage.attr("src", currentScene.itemUrl);
-		itemP.css("display", "block");
-	}	
-}
-
-/* render bag*/
-function bagRender(){
-let i;
-for(i = 0; i<bag.length;i+=1){
-switch(bag[i]){
-	case "telescope":
-	bagImage[i].attr("src", "images/item/telescope.png");
-	scenes[3].item = undefined;
-	break;
-	case "pistol":
-	bagImage[i].attr("src", "images/item/gun.png");
-	scenes[4].item = undefined;
-	break;
-	case "coin":
-	bagImage[i].attr("src", "images/item/coin.png");
-	scenes[5].item = undefined;
-	break;
-	case "water":
-	bagImage[i].attr("src", "images/item/water.png");
-	scenes[6].item = undefined;
-	break;
-	case "cloth":
-	bagImage[i].attr("src", "images/item/cloth.png");
-	scenes[7].item = undefined;
-	break;
-	case "boots":
-	bagImage[i].attr("src", "images/item/wooden-leg.png");
-	scenes[8].item = undefined;
-	break;
-	case "key":
-	bagImage[i].attr("src", "images/item/key.png");
-	scenes[10].item = undefined;
-	break;
-	case "map":
-	bagImage[i].attr("src", "images/item/map1.png");
-	scenes[11].item =undefined;
-	break;
-	case "wine":
-	bagImage[i].attr("src", "images/item/wine-bottle.png");
-	console.log(scenes[12].item);
-	scenes[13].item = undefined;
-	break;
-	case "treasure":
-	bagImage[i].attr("src", "images/item/treasure.png");
-	scenes[15].item = undefined;
-	break;
-	case "empty":
-	bagImage[i].attr("src", "images/item/empty.png");
-	break;
-}
-}
-} 
