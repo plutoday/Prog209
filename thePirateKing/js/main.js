@@ -282,6 +282,7 @@ let textIndex = 0;
 let finishText = false;
 let currentSound;
 let soundLong = document.querySelector("#soundLong");
+let soundHappy = document.querySelector("#happy");
 currentSound = soundLong;
 currentSound.currentTime = 0;
 
@@ -337,6 +338,7 @@ for (i = 0; i<bag.length;i+=1){
     return false;
 
 }
+
 
 /* show win scene to users*/
 function winScene(){
@@ -481,15 +483,23 @@ $("#save").click(function(){
 	localStorage.setItem("bagJson",bagJSON);
 });
 
-/* start over the game*/
-$("#startover").click(function(){
+function startover(){
 	errorMessage.html("");	
 	scenes = getScenes();
 	currentScene = scenes[0];
 	bag = ["empty", "empty", "empty", "empty"];
 	bagRender();
 	render();
+}
+$("#restart").click(function(){
+	$("#endSceen").css("display", "none");
+	currentSound.pause();
+	currentSound = null;
+	startover();
 });
+
+/* start over the game*/
+$("#startover").click(startover);
 
 
 function takeAction(){
@@ -517,6 +527,9 @@ function takeAction(){
 				currentScene.item = undefined;
 				render();
 				if (bag[emptyId]==="treasure"){
+					currentSound = soundHappy;
+					currentSound.currentTime = 0;
+					currentSound.play();
 					setTimeout(winScene, 1500);
 				}
 			} else {

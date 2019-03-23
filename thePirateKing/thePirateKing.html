@@ -10,10 +10,6 @@
     <link rel="stylesheet"  href="css/pirate.css" type="text/css"/>
 </head>
 <body>
-    <audio id="soundLong">
-        <source src="audio/long.mp3" type="audio/mp3">
-        <source src="audio/long.ogg" type="audio/ogg">
-    </audio>
     <header>
     <h1>THE PIRATE KING</h1>
     </header>
@@ -66,7 +62,10 @@
         <div id="endSceen">
                 <h1>Congrats, you win!</h1>
                 <img src="images/congrats.gif" id="bgw" width="400" height="400" alt="bg">
-                  </div>
+                <div>
+                <button id="restart" >Restart</button>
+                </div>
+        </div>
 
     <div id="myBag">
         <div>
@@ -90,6 +89,14 @@
     </div>
     <footer>
     </footer>
+    <audio id="soundLong">
+        <source src="audio/long.mp3" type="audio/mp3">
+        <source src="audio/long.ogg" type="audio/ogg">
+    </audio>
+    <audio id="happy">
+        <source src="audio/happy.mp3" type="audio/mp3">
+        <source src="audio/happy.ogg" type="audio/ogg">
+    </audio>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 </body>
