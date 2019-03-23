@@ -23,7 +23,7 @@ function connectNorthSouth(scene1, scene2) {
 Setting up game scenes function by modeling scenes and connecting scenes 
 of direction
 */
-let getScenes = function() {
+let getScenes = () => {
 
 let scene_start = {
 	url: "images/start.jpg",
@@ -280,6 +280,10 @@ let bagImage = [empty1, empty2, empty3, empty4];
 let bag = ["empty", "empty", "empty", "empty"];
 let textIndex = 0;
 let finishText = false;
+let currentSound;
+let soundLong = document.querySelector("#soundLong");
+currentSound = soundLong;
+currentSound.currentTime = 0;
 
 /* animation for start scene*/
 $("#startText1").fadeIn(2000);
@@ -301,7 +305,6 @@ $("#start").click(function typeWriter(){
 	if (textIndex < txt.length) {
 		$("#welcomeScript").css("display", "block");
 		document.getElementById("welcomeScript").innerHTML += txt.charAt(textIndex);
-
 		if (txt.charAt(textIndex)==="." || txt.charAt(textIndex)==="!" ){
 			document.getElementById("welcomeScript").innerHTML += "<br>";
 		}
@@ -310,6 +313,7 @@ $("#start").click(function typeWriter(){
 	} else{
 	  finishText=true;
 	}
+	currentSound.play();
 });
 
 /* take actions when enter key on keyborad pressed*/
@@ -551,7 +555,9 @@ function keydownHandler(event) {
 			$("#gameZone").css("display", "inline-block");
 			$("#myBag").css("display", "inline-block");
 			$("#welcomeScript").css("display", "none");
-			currentScene = scenes[0];		
+			currentScene = scenes[0];
+			currentSound.pause();
+			currentSound = null;		
 		}else{
 			takeAction();
 		}
