@@ -421,8 +421,6 @@ function render(){
 		}
 	}
 	if (currentScene === scenes[8]){
-		console.log("yeahh");
-
 		currentScene.item = undefined;
 		if (bag.includes("key")){
 			script = `The door is locked, use key to open it. You can go north, 
@@ -446,9 +444,15 @@ function render(){
 
 /* restore current scene and bag from local storage*/
 $("#load").click(function(){
-
-	if(typeof(Storage) !== "undefined"){
+	errorMessage.html("");	
+	if(Storage!==undefined){
 	
+		if(sceneJSON === undefined){
+	
+			//don't have anything in local storage
+			errorMessage.html("you haven't save any progress yet");	
+		}	
+		else{
 		currentSceneJson = localStorage.getItem("sceneJson");
 		let index = parseInt(JSON.parse(currentSceneJson));
 		scenes = getScenes();
@@ -456,16 +460,16 @@ $("#load").click(function(){
 		currentBagJson = localStorage.getItem("bagJson");
 		bag = JSON.parse(currentBagJson);
 		render();
-		}	
-		else{
+		}
+		}else{
 		//old bowser
 		errorMessage.html("your browser does not support local storage");	
 		}
-
 });
 
 /* save current scene to local storage*/
 $("#save").click(function(){
+	errorMessage.html("");	
 	let indexOfCurrentScene = scenes.indexOf(currentScene);
 	sceneJSON = JSON.stringify(indexOfCurrentScene);	
 	localStorage.setItem("sceneJson",sceneJSON);
@@ -475,6 +479,7 @@ $("#save").click(function(){
 
 /* start over the game*/
 $("#startover").click(function(){
+	errorMessage.html("");	
 	scenes = getScenes();
 	currentScene = scenes[0];
 	bag = ["empty", "empty", "empty", "empty"];
@@ -484,6 +489,7 @@ $("#startover").click(function(){
 
 
 function takeAction(){
+	errorMessage.html("");	
 	input = $("#input").val().trim().toLowerCase();
     $("#input").val("");
 	if(input === "south" || input === "north" || 
@@ -542,7 +548,6 @@ function keydownHandler(event) {
 
 	if (event.keyCode === 13) {
 		if (currentScene === undefined && finishText===true) {
-			console.log(finishText);
 			$("#gameZone").css("display", "inline-block");
 			$("#myBag").css("display", "inline-block");
 			$("#welcomeScript").css("display", "none");
