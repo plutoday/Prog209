@@ -32,9 +32,9 @@
     top: 40px;
     width: 80%;
     height: 600px;
-    background-color:  rgb(152, 140, 57);
     margin: 15px auto; 
     border-radius: 20px;
+    background-color: rgb(200, 167, 133);
     box-shadow: 10px 15px 15px 10px rgb(102, 78, 50);
 }
 #menu{
@@ -50,11 +50,9 @@ display: block;
 }
 
 #welcomeScript{
-    margin-left: 300px;
     font-size: 25px;
     font-family: 'Charm', cursive;
     text-align: center;
-    width: 400px;
     padding-top: 100px;
 
 }
@@ -161,6 +159,9 @@ img{
 h1,h2,h3 {
     font-family: 'ZCOOL XiaoWei', serif;
 }
+#startText1, #startText2, #bgs{
+    display: none;
+}
 
 .fas{
     transform: translate(-50%,50%);
@@ -171,18 +172,17 @@ h1,h2,h3 {
     float: right;
   }
 #startSceen{
-    background-color: black;
+    background-color: rgb(24,6,2);
     text-align: center;
-    font-weight: lighter;
     font-family: 'ZCOOL XiaoWei', serif;
     font-size: 20px;
     height: 600px;
-    color: antiquewhite;
+    color: rgb(193,193,193);
     border-radius: 20px;
 
 }
 h2 {
-    padding-top: 40px;
+    padding-top: 60px;
 }
 #start {
     font-size: 35px;
