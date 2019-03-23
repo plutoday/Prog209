@@ -483,6 +483,7 @@ $("#save").click(function(){
 	localStorage.setItem("bagJson",bagJSON);
 });
 
+/* start over the game function*/
 function startover(){
 	errorMessage.html("");	
 	scenes = getScenes();
@@ -491,6 +492,7 @@ function startover(){
 	bagRender();
 	render();
 }
+/* restart the game*/
 $("#restart").click(function(){
 	$("#endSceen").css("display", "none");
 	currentSound.pause();
@@ -501,7 +503,7 @@ $("#restart").click(function(){
 /* start over the game*/
 $("#startover").click(startover);
 
-
+/*take actions base on command*/
 function takeAction(){
 	errorMessage.html("");	
 	input = $("#input").val().trim().toLowerCase();
